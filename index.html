@@ -123,8 +123,8 @@
                 <h2 class="heading">Portfolio</h2>
                 <p class="lead">JVM Status Checker</p>
                 <p>When deploying from Staging to Production, we track the status of our rolling JVM restart with a page that looks like 90% gobbledegook to the average user. I took the initiative to create this little JS tool which, when run in the browser console, parses out just the relevant information and displays it for optimal legibility.</p>
-                <pre><code class="language-javascript">
-                // get web content
+                <pre class="language-javascript"><code class="language-javascript">
+// get web content
 var txt = $('body').outerHTML;
 // remove html tags
 txt = txt.replace(/<.*?>/g,'').trim();
