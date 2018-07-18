@@ -123,7 +123,73 @@
                 <h2 class="heading">Portfolio</h2>
                 <p class="lead">JVM Status Checker</p>
                 <p>When deploying from Staging to Production, we track the status of our rolling JVM restart with a page that looks like 90% gobbledegook to the average user. I took the initiative to create this little JS tool which, when run in the browser console, parses out just the relevant information and displays it for optimal legibility.</p>
-                <pre data-src="code\statusChecker.txt"></pre>
+                <pre><code class="language-javascript">
+                // get web content
+var txt = $('body').outerHTML;
+// remove html tags
+txt = txt.replace(/<.*?>/g,'').trim();
+
+// regex pattern to match current JVM
+var currentJvmRgx = /JVM:\s.+?[app|int]00\d?/;
+var currentJvmTxt = txt.match(currentJvmRgx);
+var currentJvmParser = /JVM:\s.+(app|int)(00\d)/;
+var currentJvmDisplay = currentJvmParser.exec(currentJvmTxt);
+var jvmDisplay = "Current JVM = " + currentJvmDisplay[1] + currentJvmDisplay[2] + " *\n\n";
+
+// regex pattern to match each JVM
+var jvmTxtRgx = 
+    /JVM\s.+[app|int]00\d[\S\s]+?Restart:\s[A-z]{3}\s[A-z]{3}\s\d+\s\d{2}:\d{2}:\d{2}\sP[DS]T\s\d{4}\sUptime:\s.+/g;
+
+// put JVM text into array jvmText
+var jvmText = txt.match(jvmTxtRgx);
+var jvmInfo = [];
+// regex pattern parsing data into matching groups
+var regexParser = 
+    /(app|int)00(\d)[\S\s]+?([A-z]{3})\s([A-z]{3})\s(\d+)\s(\d{2}:\d{2}:\d{2})\sP[DS]T\s(\d{4})\sUptime:\s(.+)/;
+
+// put JVM data into array jvmInfo
+for (var i = 0; i < jvmText.length; i++) {	
+	jvmInfo[i] = regexParser.exec(jvmText[i]);
+}
+
+var jvmObjects = [];
+var j = 1;
+// put each JVM into array jvmObjects, with named data members, in order
+for (i = 0; i < jvmInfo.length; i++) {
+	// create JVM object
+	var jvm = {name:jvmInfo[i][1] + "00" + jvmInfo[i][2], type:jvmInfo[i][1], number:jvmInfo[i][2], weekday:jvmInfo[i][3], 
+               month:jvmInfo[i][4], date:jvmInfo[i][5], time:jvmInfo[i][6], year:jvmInfo[i][7], uptime:jvmInfo[i][8]};
+
+	// place admin JVM last in array
+	if (jvm.type == "int") {
+		jvmObjects.push(jvm);
+	// place first JVM at start of array
+	} else if (jvmObjects[0] == null) {
+
+		jvmObjects.unshift(jvm);
+	// check if this JVM belongs first
+	} else if (jvmObjects[0].number > jvm.number || jvmObjects[0].type == "int") {
+		jvmObjects.unshift(jvm)
+	} else {
+		for (j = 1; j <= jvmObjects.length; j++) {
+			if (jvmObjects[j] == null || jvmObjects[j].number > jvm.number || jvmObjects[j].type == "int") {
+				jvmObjects.splice(j, 0, jvm);
+				break;
+			}
+		}
+	}
+}
+for (i = 0; i < jvmObjects.length; i++) {
+	if (currentJvmDisplay[1] + currentJvmDisplay[2] == jvmObjects[i].name) {
+		jvmObjects[i].name += "*";
+	}
+	jvmDisplay += ("JVM " + jvmObjects[i].name + " last restarted at " + jvmObjects[i].time + 
+                   " on " + jvmObjects[i].weekday + ", " + jvmObjects[i].month + " " + jvmObjects[i].date + "\n"
+                   + "Refreshed " + jvmObjects[i].uptime + " ago\n\n");
+}
+console.log(jvmDisplay); 
+alert(jvmDisplay);
+                </code></pre>
               </div>
             </div>
             <!--div class="row">
