@@ -6,3 +6,20 @@ pre {
 .code-block {
 	margin-bottom: 40px !important;
 }
+
+.ring {
+    border: solid black 30px;
+    border-radius: 50%;
+    padding: 20px;
+    position: relative;
+}
+
+.colorBox {
+    width: 100px;
+    margin: 0 auto;
+    opacity: .7;
+    position: absolute;
+    display: block;
+    top: 0;
+    border-radius: 5px;
+}
