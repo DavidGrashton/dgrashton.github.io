@@ -126,3 +126,30 @@ function map() {
     }
 
 }
+
+// ------------------------------------------------------ //
+// Color Rings - DG 2017
+// ------------------------------------------------------ //
+function insertInput() {
+    var rings = document.querySelectorAll("div");
+    console.log(rings);
+    for (var i = 0; i < rings.length; i++) {
+        var colorBox = document.createElement("input");
+        colorBox.setAttribute("type","text");
+        colorBox.setAttribute("class","colorBox");
+        colorBox.setAttribute("oninput","checkColor(this)")
+        console.log(rings[i]);
+        var kidNodes = rings[i].childNodes;
+        console.log(kidNodes);
+        rings[i].insertBefore(colorBox, kidNodes[0]);
+        console.log(i);
+    }
+    console.log(document.querySelectorAll(".colorBox"));
+}
+
+function checkColor(box) {
+    console.log("box = " + box);
+    var text = box.value;
+    console.log("box.parent = " + box.parentNode);
+    box.parentNode.setAttribute("style", "border-color: " + text);
+}
