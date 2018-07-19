@@ -17,7 +17,7 @@ pre {
 .colorBox {
     width: 100px;
     margin: 0 auto;
-    opacity: .7;
+/*     opacity: .7; */
     position: absolute;
     display: block;
     top: 0;
