@@ -96,7 +96,7 @@
 					colorBox.setAttribute("class","colorBox");
 					colorBox.setAttribute("placeholder","Color");
 					colorBox.setAttribute("oninput","checkColor(this)");
-					colorBox.setAttribute("style", "opacity: " + (7 - i) * .1 + ";");
+					colorBox.setAttribute("style", "opacity: " + (8 - (2 * i)) * .1 + ";");
 					var kidNodes = rings[i].childNodes;
 					rings[i].insertBefore(colorBox, kidNodes[0]);
 					//rings[i].setAttribute("style", "border: solid black " + (30 + (i * 6)) + "px;");
