@@ -1451,7 +1451,8 @@ select distinct p.code, psd.on_sale, p.DATE_CREATED, sum(i.stock)
             <h2 class="heading">Contact</h2>
             <div class="row">
               <div class="col-lg-6">
-                <form id="contact-form" method="post" action="mailto:davidgrashton@gmail.com" class="contact-form">
+                <form id="contact-form" method="post" action="formmail.php" class="contact-form">
+		  <input type="hidden" name="recipients" value="davidgrashtonMANGLEgmail.com" />
                   <div class="controls">
                     <div class="row">
                       <div class="col-md-6">
