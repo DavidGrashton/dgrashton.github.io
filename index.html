@@ -98,6 +98,7 @@
 					colorBox.setAttribute("style", "opacity: " + (7 - i) * .1 + ";");
 					var kidNodes = rings[i].childNodes;
 					rings[i].insertBefore(colorBox, kidNodes[0]);
+					rings[i].setAttribute("style", "border: solid black " + (30 + (i * 6)) + "px;");
 				    }
 			}			
 			insertInput();
@@ -1490,7 +1491,7 @@ select distinct p.code, psd.on_sale, p.DATE_CREATED, sum(i.stock)
         </div>
       </div>
     </section>
-    <div id="map"></div>
+    <!--div id="map"></div-->
     <footer style="background-color: #111;">
       <div class="container"> 
         <div class="row copyright">
