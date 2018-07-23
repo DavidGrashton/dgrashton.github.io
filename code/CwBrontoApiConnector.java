@@ -1,38 +1,12 @@
 package com.titlenine.integration.bronto;
 
-import com.bronto.api.model.*;
-
-import com.bronto.api.BrontoApi;
-import com.bronto.api.BrontoClient;
-import com.bronto.api.ObjectOperations;
-import com.bronto.api.model.ContactObject;
-import com.bronto.api.model.DeliveryObject;
-import com.bronto.api.model.DeliveryRecipientObject;
-import com.bronto.api.model.DeliveryRecipientSelection;
-import com.bronto.api.model.DeliveryRecipientType;
-import com.bronto.api.model.DeliveryType;
-import com.bronto.api.model.MailListObject;
-import com.bronto.api.model.MessageFieldObject;
-import com.bronto.api.model.MessageObject;
-import com.bronto.api.model.ObjectFactory;
-import com.bronto.api.model.ResultItem;
-import com.bronto.api.model.WriteResult;
-import com.bronto.api.operation.ContactOperations;
-import com.bronto.api.operation.MailListOperations;
-import com.bronto.api.operation.MessageOperations;
-import com.bronto.api.request.ContactReadRequest;
-import com.bronto.api.request.MailListReadRequest;
-import com.bronto.api.request.MessageReadRequest;
-import com.titlenine.integration.cw.*;
-
+//proprietary imports omitted
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.Unmarshaller;
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
-
 import org.apache.commons.lang3.mutable.MutableBoolean;
-
 import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -59,9 +33,9 @@ public class CopyOfCwBrontoApiConnector {
 		outputLog = sdf.format(new Date());		
 	}
 
-	static final String TOKEN = "22DF4038-A0F4-43B1-97AD-F593CF9D1C06";
-    static final String WSDL = "https://api.bronto.com/v4?wsdl";
-    static final String URL = "https://api.bronto.com/v4";
+    static final String TOKEN = /*omitted*/;
+    static final String WSDL = /*omitted*/;
+    static final String URL = /*omitted*/;
     
     static final String UPSURL = "https://www.ups.com/tracking/tracking.html";
     static final String UPSQP = "?track=yes&trackNums;=";
@@ -71,19 +45,19 @@ public class CopyOfCwBrontoApiConnector {
     static final String FEDEXQP = "&tracknumbers=";
     static final String NEWGURL = "http://tracking.smartlabel.com/";
 
-	private LinkedHashMap<String, String> cmdArgs = new LinkedHashMap<String, String>(); 
+    private LinkedHashMap<String, String> cmdArgs = new LinkedHashMap<String, String>(); 
     private LinkedHashMap<String, Carrier> carriers = new LinkedHashMap<String, Carrier>();
-	private LinkedHashMap<String, OrderMessage> nonInvItems = new LinkedHashMap<String, OrderMessage>();
-	private LinkedHashMap<String, String> utilItems = new LinkedHashMap<String, String>();
-	private LinkedHashMap<String, String> messageNames = new LinkedHashMap<String, String>();
-	private LinkedHashMap<String, String> thisMessage = new LinkedHashMap<String, String>();
-	private Collection<File> emailFiles = new ArrayList<File>();
-	private String filePath;
-	private String outputLog; 
-	private String debugLevel = "log"; // log = default, debug = verbose
-	protected SimpleDateFormat sdf = new SimpleDateFormat();
+    private LinkedHashMap<String, OrderMessage> nonInvItems = new LinkedHashMap<String, OrderMessage>();
+    private LinkedHashMap<String, String> utilItems = new LinkedHashMap<String, String>();
+    private LinkedHashMap<String, String> messageNames = new LinkedHashMap<String, String>();
+    private LinkedHashMap<String, String> thisMessage = new LinkedHashMap<String, String>();
+    private Collection<File> emailFiles = new ArrayList<File>();
+    private String filePath;
+    private String outputLog; 
+    private String debugLevel = "log"; // log = default, debug = verbose
+    protected SimpleDateFormat sdf = new SimpleDateFormat();
 	
-	//* start main()
+    //* start main()
     public static void main(String[] args){ 
     	CopyOfCwBrontoApiConnector connector = new CopyOfCwBrontoApiConnector();
     	connector.log("************************************************************");
@@ -91,11 +65,11 @@ public class CopyOfCwBrontoApiConnector {
     	connector.log("************************************************************");
     	
     	connector.parseCmdArgs(args, connector.cmdArgs);	
-		connector.debugLevel = connector.setDebugLevel();
-		connector.log("Debug level: " + connector.debugLevel);
-		connector.filePath = connector.setFiles();
+	connector.debugLevel = connector.setDebugLevel();
+	connector.log("Debug level: " + connector.debugLevel);
+	connector.filePath = connector.setFiles();
     	
-		int fileCount = 1;
+	int fileCount = 1;
     	for (File newFile : connector.emailFiles) {
     		connector.thisMessage = new LinkedHashMap();
     		connector.log("File " + "#" + fileCount++ + ": " + newFile.getName());
@@ -115,24 +89,24 @@ public class CopyOfCwBrontoApiConnector {
     
     //* parse command line arguments into key/value pairs
     public void parseCmdArgs(String[] args, LinkedHashMap cmdArgs) {
-		if ( args != null && args.length > 0 ) {
-			for (String arg : args) {
-				if (arg.indexOf("=") > -1) {
-					String[] pair = arg.split("=");
-					cmdArgs.put(pair[0], pair[1]);
-					debug("(command arg) " + pair[0] + " = " + pair[1]);
-				}
+	if ( args != null && args.length > 0 ) {
+		for (String arg : args) {
+			if (arg.indexOf("=") > -1) {
+				String[] pair = arg.split("=");
+				cmdArgs.put(pair[0], pair[1]);
+				debug("(command arg) " + pair[0] + " = " + pair[1]);
 			}
-		} else {
-			debug("No command args");
 		}
-	} // end of parseCmdArgs()
+	} else {
+		debug("No command args");
+	}
+    } // end of parseCmdArgs()
     
     //* sets debug level if present 
     public String setDebugLevel() {
     	if (cmdArgs.get("debugLevel") != null && cmdArgs.get("debugLevel") != "") {
-			return (String)cmdArgs.get("debugLevel");
-		}
+		return (String)cmdArgs.get("debugLevel");
+	}
     	return "log";
     } // end of setDebugLevel()
     
@@ -211,7 +185,7 @@ public class CopyOfCwBrontoApiConnector {
     			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
     			"Please return the incorrect item to us within 30 days to avoid being charged for it. " + 
     			"Give us a call at 800.342.4448 so that we can help you return it at no cost to you.", "CS"));
-    	nonInvItems.put("1500", new OrderMessage("We’re sorry that your package was missing items! " + 
+    	nonInvItems.put("1500", new OrderMessage("WeÂ’re sorry that your package was missing items! " + 
     			"Please ignore the \"Order Total\" on this invoice. You were not charged for this replacement!", "CS"));
     	nonInvItems.put("4500", new OrderMessage("We goofed! Apologies for sending you the wrong item. " + 
     			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
