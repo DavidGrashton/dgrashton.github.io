@@ -7,6 +7,11 @@ pre {
 	margin-bottom: 40px !important;
 }
 
+.post-ring {
+	margin-top: 20px !important;
+	font-size: small;
+}
+
 .ring {
     border-radius: 50%;
     padding: 20px;
