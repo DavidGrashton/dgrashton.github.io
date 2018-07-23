@@ -299,7 +299,7 @@ public class CopyOfCwBrontoApiConnector {
 				} else {
 					apiResponse += "OK";
 				}
-			    }
+			}
 			} catch (Exception e){
 			    e.printStackTrace();
 			}
@@ -307,9 +307,9 @@ public class CopyOfCwBrontoApiConnector {
 			if (sendStatus == "") {
 				sendStatus = "SUCCESS";
 			}
-		        }
+		}
 
-		    } else {
+	    } else {
 			log("Email suppressed");
 			sendStatus = "SUPPRESS";
 		}
@@ -533,91 +533,7 @@ public class CopyOfCwBrontoApiConnector {
     	putData(thisMessage, "time_created", parseTime(message.getTimeCreated()));
     } // end of putMessageData()
     
-    //* processes all fields of the Email object
-    public static void putEmailData(LinkedHashMap thisMessage, Email email) {
-    	putData(thisMessage, "notification_type", email.getNotificationType());
-    	putData(thisMessage, "notification_type_desc", email.getNotificationTypeDesc());
-    	putData(thisMessage, "email_addr", email.getEmailAddr());
-    	putData(thisMessage, "company", email.getCompany());
-    	putData(thisMessage, "company_desc", email.getCompanyDesc());
-    	putData(thisMessage, "entity", email.getEntity());
-    	putData(thisMessage, "entity_desc", email.getEntityDesc());
-    } // end of putEmailData()
-    
-    //* processes all fields of the CustomerSoldTo object
-    public static void putCustomerSoldToData(LinkedHashMap thisMessage, CustomerSoldTo customerSoldTo) {
-    	putData(thisMessage, "sold_to_nbr", customerSoldTo.getSoldToNbr());
-    	putData(thisMessage, "sold_to_company", customerSoldTo.getSoldToCompany());
-    	putData(thisMessage, "sold_to_fname", customerSoldTo.getSoldToFname());
-    	putData(thisMessage, "eGiftCard_sender_fname", customerSoldTo.getSoldToFname());
-    	putData(thisMessage, "sold_to_minitial", customerSoldTo.getSoldToMinitial());
-    	putData(thisMessage, "sold_to_lname", customerSoldTo.getSoldToLname());
-    	putData(thisMessage, "eGiftCard_sender_lname", customerSoldTo.getSoldToLname());
-    	putData(thisMessage, "sold_to_addr1", customerSoldTo.getSoldToAddr1());
-    	putData(thisMessage, "sold_to_addr2", customerSoldTo.getSoldToAddr2());
-    	putData(thisMessage, "sold_to_addr3", customerSoldTo.getSoldToAddr3());
-    	putData(thisMessage, "sold_to_addr4", customerSoldTo.getSoldToAddr4());
-    	putData(thisMessage, "sold_to_city", customerSoldTo.getSoldToCity());
-    	putData(thisMessage, "sold_to_state", customerSoldTo.getSoldToState());
-    	putData(thisMessage, "sold_to_state_name", customerSoldTo.getSoldToStateName());
-    	putData(thisMessage, "sold_to_postal", customerSoldTo.getSoldToPostal());
-    	putData(thisMessage, "sold_to_country", customerSoldTo.getSoldToCountry());
-    	putData(thisMessage, "sold_to_country_name", customerSoldTo.getSoldToCountryName());
-    	putData(thisMessage, "sold_to_alternate_id", customerSoldTo.getSoldToAlternateId());
-    	putData(thisMessage, "sold_to_cust_class", customerSoldTo.getSoldToCustClass());
-    	putData(thisMessage, "sold_to_cust_class_desc", customerSoldTo.getSoldToCustClassDesc());	
-    } // end of putCustomerSoldToData()
-    
-    //* processes all fields of the CustomerSoldToHistory object
-    public static void putCustomerSoldToHistory(LinkedHashMap thisMessage, CustomerSoldToHistory customerSoldToHistory) {
-    	putData(thisMessage, "sold_to_LTD_nbr_orders", customerSoldToHistory.getSoldToLTDNbrOrders());
-    	putData(thisMessage, "sold_to_LTD_order_dollars", parseCurrency(customerSoldToHistory.getSoldToLTDOrderDollars()));
-    	putData(thisMessage, "sold_to_LTD_nbr_sales", customerSoldToHistory.getSoldToLTDNbrSales());
-    	putData(thisMessage, "sold_to_LTD_sales_dollars", parseCurrency(customerSoldToHistory.getSoldToLTDSalesDollars()));
-    	putData(thisMessage, "sold_to_first_buyer", customerSoldToHistory.getSoldToFirstBuyer());
-    	putData(thisMessage, "sold_to_last_src", customerSoldToHistory.getSoldToLastSrc());
-    	putData(thisMessage, "sold_to_last_src_desc", customerSoldToHistory.getSoldToLastSrcDesc());
-    } // end of putCustomerSoldToHistory()
-    
-    //* processes all fields of the CustomerShipTo object
-    public static void putCustomerShipTo(LinkedHashMap thisMessage, CustomerShipTo customerShipTo) {
-    	putData(thisMessage, "ship_to_company", customerShipTo.getShipToCompany());
-    	putData(thisMessage, "ship_to_fname", customerShipTo.getShipToFname());
-    	putData(thisMessage, "eGiftCard_recipient_fname", customerShipTo.getShipToFname());
-    	putData(thisMessage, "ship_to_minitial", customerShipTo.getShipToMinitial());
-    	putData(thisMessage, "ship_to_lname", customerShipTo.getShipToLname());
-    	putData(thisMessage, "eGiftCard_recipient_lname", customerShipTo.getShipToLname());
-    	putData(thisMessage, "ship_to_addr1", customerShipTo.getShipToAddr1());
-    	putData(thisMessage, "ship_to_addr2", customerShipTo.getShipToAddr2());
-    	putData(thisMessage, "ship_to_addr3", customerShipTo.getShipToAddr3());
-    	putData(thisMessage, "ship_to_addr4", customerShipTo.getShipToAddr4());
-    	putData(thisMessage, "ship_to_city", customerShipTo.getShipToCity());
-    	putData(thisMessage, "ship_to_state", customerShipTo.getShipToState());
-    	putData(thisMessage, "ship_to_state_name", customerShipTo.getShipToStateName());
-    	putData(thisMessage, "ship_to_postal", customerShipTo.getShipToPostal());
-    	putData(thisMessage, "ship_to_country", customerShipTo.getShipToCountry());
-    	putData(thisMessage, "ship_to_country_name", customerShipTo.getShipToCountryName());
-    } // end of putCustomerShipTo()
-    
-    //* processes all fields of the Order object
-    public static void putOrder(LinkedHashMap thisMessage, Order order) {
-    	putData(thisMessage, "order_nbr", order.getOrderNbr());
-    	putData(thisMessage, "order_date", parseDate(order.getOrderDate()));
-    	putData(thisMessage, "order_source", order.getOrderSource());
-    	putData(thisMessage, "order_source_desc", order.getOrderSourceDesc());
-    	putData(thisMessage, "order_offer", order.getOrderOffer());
-    	putData(thisMessage, "order_offer_desc", order.getOrderOfferDesc());
-    	putData(thisMessage, "order_process_date", parseDate(order.getOrderProcessDate()));
-    	putData(thisMessage, "order_ship_to", order.getOrderShipTo());
-    	putData(thisMessage, "ost_discount", parseCurrency(order.getOstDiscount()));
-    	putData(thisMessage, "ost_tax", parseCurrency(order.getOstTax()));
-    	putData(thisMessage, "ost_merch", parseCurrency(order.getOstMerch()));
-    	putData(thisMessage, "ost_freight", parseCurrency(order.getOstFreight()));
-    	putData(thisMessage, "ost_addl_freight", parseCurrency(order.getOstAddlFreight()));
-    	putData(thisMessage, "ost_hand", parseCurrency(order.getOstHand()));
-    	putData(thisMessage, "ost_addl_charge", parseCurrency(order.getOstAddlCharge()));
-    	putData(thisMessage, "ost_total_amt", parseCurrency(order.getOstTotalAmt()));
-    } // end of putOrder()
+    //similar methods omitted
     
     //* processes all fields of all OrderDetail objects
     public static String putOrderDetails(LinkedHashMap thisMessage, List<OrderDetail> orderDetails, String certonaItems) {
@@ -641,25 +557,7 @@ public class CopyOfCwBrontoApiConnector {
 	    		}
 	    	}
 	    	putData(thisMessage, "odt_SKU_desc_" + odtIndex, orderDetail.getOdtSKUDesc());
-	    	putData(thisMessage, "odt_alias_item_" + odtIndex, orderDetail.getOdtAliasItem());
-	    	putData(thisMessage, "odt_item_class_" + odtIndex, orderDetail.getOdtItemClass());
-	    	putData(thisMessage, "odt_item_class_desc_" + odtIndex, orderDetail.getOdtItemClassDesc());
-	    	putData(thisMessage, "odt_set_master_" + odtIndex, orderDetail.getOdtSetMaster());
-	    	putData(thisMessage, "odt_set_component_seq_" + odtIndex, orderDetail.getOdtSetComponentSeq());
-	    	putData(thisMessage, "odt_free_gift_" + odtIndex, orderDetail.getOdtFreeGift());
-	    	putData(thisMessage, "odt_offer_" + odtIndex, orderDetail.getOdtOffer());
-	    	putData(thisMessage, "odt_offer_desc_" + odtIndex, orderDetail.getOdtOfferDesc());
-	    	putData(thisMessage, "odt_source_" + odtIndex, orderDetail.getOdtSource());
-	    	putData(thisMessage, "odt_source_desc_" + odtIndex, orderDetail.getOdtSourceDesc());
-	    	putData(thisMessage, "odt_price_" + odtIndex, parseCurrency(orderDetail.getOdtPrice()));
-	    	putData(thisMessage, "odt_qty_" + odtIndex, orderDetail.getOdtQty());
-	    	putData(thisMessage, "odt_extended_price_" + odtIndex, parseCurrency(orderDetail.getOdtExtendedPrice()));
-	    	putData(thisMessage, "odt_availability_msg_" + odtIndex, orderDetail.getOdtAvailabilityMsg());
-	    	putData(thisMessage, "odt_expected_ship_date_" + odtIndex, parseDate(orderDetail.getOdtExpectedShipDate()));
-	    	putData(thisMessage, "odt_seq_nbr_" + odtIndex, orderDetail.getOdtSeqNbr());
-	    	putData(thisMessage, "odt_line_nbr_" + odtIndex, orderDetail.getOdtLineNbr());
-	    	putData(thisMessage, "odt_backorder_qty_" + odtIndex, orderDetail.getOdtBackorderQty());
-	    	putData(thisMessage, "odt_soldout_qty_" + odtIndex, orderDetail.getOdtSoldoutQty());
+	    	//additional fields omitted
     	}
     	return certonaItems;
     } // end of putOrderDetails()
@@ -675,14 +573,7 @@ public class CopyOfCwBrontoApiConnector {
     		else
     			putData(thisMessage, "opm_payment_type_desc_" + opmIndex, orderPayment.getOpmPaymentTypeDesc());
     		putData(thisMessage, "opm_pay_plan_" + opmIndex, orderPayment.getOpmPayPlan());
-    		putData(thisMessage, "opm_pay_plan_desc_" + opmIndex, orderPayment.getOpmPayPlanDesc());
-    		putData(thisMessage, "opm_deferral_days_" + opmIndex, orderPayment.getOpmDeferralDays());
-    		putData(thisMessage, "opm_deferral_date_" + opmIndex, parseDate(orderPayment.getOpmDeferralDate()));
-    		putData(thisMessage, "opm_nbr_installments_" + opmIndex, orderPayment.getOpmNbrInstallments());
-    		putData(thisMessage, "opm_installment_interval_" + opmIndex, orderPayment.getOpmInstallmentInterval());
-    		putData(thisMessage, "opm_gift_certificate_cpn_" + opmIndex, orderPayment.getOpmGiftCertificateCpn());
-    		putData(thisMessage, "opm_credit_card_" + opmIndex, orderPayment.getOpmCreditCard());
-    		putData(thisMessage, "opm_credit_card_exp_date_" + opmIndex, orderPayment.getOpmCreditCardExpDate());
+    		//additional fields omitted
     	}
     } // end of putOrderPayments()
     
@@ -695,14 +586,7 @@ public class CopyOfCwBrontoApiConnector {
     	putData(thisMessage, "invoice_ship_to_label", carrier.getLabel());
     	
     	putData(thisMessage, "ist_ship_date", parseDate(invoice.getIstShipDate()));
-    	putData(thisMessage, "ist_ship_merch", parseCurrency(invoice.getIstShipMerch()));
-    	putData(thisMessage, "ist_ship_tax", parseCurrency(invoice.getIstShipTax()));
-    	putData(thisMessage, "ist_ship_freight", parseCurrency(invoice.getIstShipFreight()));
-    	putData(thisMessage, "ist_ship_addl_freight", parseCurrency(invoice.getIstShipAddlFreight()));
-    	putData(thisMessage, "ist_ship_hand", parseCurrency(invoice.getIstShipHand()));
-    	putData(thisMessage, "ist_ship_addl_charge", parseCurrency(invoice.getIstShipAddlCharge()));
-    	putData(thisMessage, "ist_ship_total_amt", parseCurrency(invoice.getIstShipTotalAmt()));
-    	putData(thisMessage, "cc_credit_amt", parseCurrency(invoice.getCcCreditAmt()));
+    	//additional fields omitted
     } // end of putInvoice()
     
     //* processes all fields of all InvoiceDetail objects, except nonInventoryItems
@@ -733,12 +617,9 @@ public class CopyOfCwBrontoApiConnector {
 		    		}
 	    		}
 	    		putData(thisMessage, "idt_SKU_desc_" + idtIndex, invoiceDetail.getIdtSKUDesc());
-	    		putData(thisMessage, "idt_item_class_" + idtIndex, invoiceDetail.getIdtItemClass());
-	    		putData(thisMessage, "idt_item_class_desc_" + idtIndex, invoiceDetail.getIdtItemClassDesc());
-	    		putData(thisMessage, "idt_alias_item_" + idtIndex, invoiceDetail.getIdtAliasItem());	    		
-	    		putData(thisMessage, "idt_ship_qty_" + idtIndex, invoiceDetail.getIdtShipQty());
 	    		putData(thisMessage, "idt_price_" + idtIndex, parseCurrency(invoiceDetail.getIdtPrice()));
 	    		putData(thisMessage, "idt_extended_price_" + idtIndex, parseCurrency(invoiceDetail.getIdtExtendedPrice()));
+				//additional fields omitted
 	    		if (utilItems.containsKey(invoiceDetail.getIdtItem())) {
 	    			putData(thisMessage, "idt_is_util_" + idtIndex, "Y");
 	    		} else {
@@ -750,6 +631,7 @@ public class CopyOfCwBrontoApiConnector {
 	    				putStoredValueCards(thisMessage, storedValueCards);
 	    		}
     		} else {
+				//Do not send if all invoice items have omsPrintFlag of "X"
     			idtIndex++;
     			if (idtIndex == 1) {
     				if ( "X".equals(nonInvItems.get(invoiceDetail.getIdtItem()).getOmsPrintFlag()) ) {
