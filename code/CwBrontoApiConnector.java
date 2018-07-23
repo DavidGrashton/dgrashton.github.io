@@ -152,99 +152,22 @@ public class CopyOfCwBrontoApiConnector {
     //* populate a LinkedHashMap with pairs of notification_type/brontoMessageName
     //** Long term plan is to populate these hashmaps using external files for easier editing
     public static void createMessageNames(LinkedHashMap<String, String> messageNames) {
-        messageNames.put("B1", "CwBackorderNotification_1");
-        messageNames.put("B2", "CwBackorderNotification_2");
-        messageNames.put("B3", "CwBackorderNotification_3");
-        messageNames.put("RC", "CwReturnNotification_3");
         messageNames.put("SC", "CwShipConfirmation");
-        messageNames.put("S1", "CwSoldOutNotification");
-        messageNames.put("v01", "CwEgiftCardNotification_1");
-        messageNames.put("v02", "CwEgiftCardNotification_2");
-        messageNames.put("v03", "CwEgiftCardNotification_3");
-        messageNames.put("v04", "CwEgiftCardNotification_4");
         messageNames.put("SV", "Fail");
+	//additional codes omitted
     }
     
     //* take items that will come out of CW as invoice items but should not be treated as such and put them in a LinkedHashMap
     public void createNonInvItems(LinkedHashMap<String, OrderMessage> nonInvItems) {
-    	nonInvItems.put("4300", new OrderMessage("Sorry for the delay with your original order. " + 
-    			"Please ignore the \"order total.\" You were not charged for this replacement.<br/><br/>" +
-    			"If your original package arrives in addition to this replacement, " + 
-    			"please give us a call at 800.342.4448 so that we can help you return it at no cost to you. " + 
-    			"If you decide to keep the original package, we'll charge you for the items.", "CS"));
-    	nonInvItems.put("4400", new OrderMessage("Sorry for the delay with your original order. " + 
-    			"Please ignore the \"order total.\" You were not charged for this replacement.<br/><br/>" +
-    			"If your original package arrives in addition to this replacement, " + 
-    			"please give us a call at 800.342.4448 so that we can help you return it at no cost to you. " + 
-    			"If you decide to keep the original package, we'll charge you for the items.", "CS"));
-    	nonInvItems.put("3000", new OrderMessage("Rats! We're sorry that you received a defective item. " + 
-    			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
-    			"Please return the defective item to us within 30 days to avoid being charged for it. " + 
-    			"Give us a call at 800.342.4448 so that we can help you return it at no cost to you.", "CS"));
-    	nonInvItems.put("3100", new OrderMessage("We goofed! Apologies for sending you the wrong item. " + 
-    			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
-    			"Please return the incorrect item to us within 30 days to avoid being charged for it. " + 
-    			"Give us a call at 800.342.4448 so that we can help you return it at no cost to you.", "CS"));
-    	nonInvItems.put("1500", new OrderMessage("Were sorry that your package was missing items! " + 
-    			"Please ignore the \"Order Total\" on this invoice. You were not charged for this replacement!", "CS"));
-    	nonInvItems.put("4500", new OrderMessage("We goofed! Apologies for sending you the wrong item. " + 
-    			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
-    			"Please return the incorrect item to us within 30 days to avoid being charged for it." +
-    			"Give us a call at 800.342.4448 so that we can help you return it at no cost to you.", "CS"));
-    	nonInvItems.put("3200", new OrderMessage("We goofed! Apologies for sending you the wrong item. " + 
-    			"You have not been charged for this replacement and you can ignore the \"Order Total\" on this invoice.<br/><br/>" +
-    			"Please return the incorrect item to us within 30 days to avoid being charged for it." +
-    			"Give us a call at 800.342.4448 so that we can help you return it at no cost to you.", "CS"));
     	nonInvItems.put("2200", new OrderMessage("Thank you for your exchange order!", "CS"));
-    	nonInvItems.put("2100", new OrderMessage("Thank you for your exchange order!", "CS"));
-    	nonInvItems.put("CATLG", new OrderMessage("", "X"));
-    	nonInvItems.put("GFTWRP", new OrderMessage("", "X"));
     	nonInvItems.put("GFTCRD", new OrderMessage("", "X"));
-    	nonInvItems.put("CROONR", new OrderMessage("", "X"));
-    	nonInvItems.put("GIFT5", new OrderMessage("", "X"));
+	//additional codes omitted
     } // end of createNonInvItems()
     
     //* put carrier data in a LinkedHashMap
-    public static void createCarriers(LinkedHashMap<String, Carrier> carriers) {
-    	carriers.put("1", new Carrier("1", "", "", "BEST WAY - GROUND"));    	
-    	carriers.put("2", new Carrier("2", "", "", "EXPRESS"));    	
-    	carriers.put("3", new Carrier("3", "", "", "ZAP"));
-    	carriers.put("4", new Carrier("4", "", "", "STANDARD SHIPPING TO AK/HI"));    	
-    	carriers.put("9", new Carrier("9", "", "", "LICKETY-SPLIT"));    	
-    	carriers.put("10", new Carrier("10", "", "", "*DON'T USE* LICKETY-SPLITAK/HI"));    	
-    	carriers.put("13", new Carrier("13", "USPS", USPSURL, "FIRST CLASS ENVELOPE", USPSQP)); 	
-    	carriers.put("16", new Carrier("16", "USPS", USPSURL, "FIRST CLASS MAIL", USPSQP));	
-    	carriers.put("17", new Carrier("17", "USPS", USPSURL, "PRIORITY MAIL - USPS", USPSQP));	
-    	carriers.put("18", new Carrier("18", "USPS", USPSURL, "EXPRESS MAIL - USPS", USPSQP));	
-    	carriers.put("19", new Carrier("19", "USPS", USPSURL, "PRIORITY INSURED - USPS", USPSQP));
-    	carriers.put("20", new Carrier("20", "FedEx", FEDEXURL, "FEDEX EXPRESS SAVER - 3 DAY", FEDEXQP));   	
-    	carriers.put("21", new Carrier("21", "UPS", UPSURL, "UPS MAIL INNOVATIONS", UPSQP));
-    	carriers.put("33", new Carrier("33", "USPS", USPSURL, "APO SHIPPING", USPSQP));    	
-    	carriers.put("40", new Carrier("40", "FedEx", FEDEXURL, "FEDEX GROUND", FEDEXQP));    	
-    	carriers.put("41", new Carrier("41", "FedEx", FEDEXURL, "FEDEX PRIORITY OVERNIGHT", FEDEXQP));
-    	carriers.put("42", new Carrier("42", "FedEx", FEDEXURL, "FEDEX STANDARD OVERNIGHT", FEDEXQP));    	
-    	carriers.put("43", new Carrier("43", "FedEx", FEDEXURL, "FEDEX 2 DAY", FEDEXQP));    	
-    	carriers.put("44", new Carrier("44", "FedEx", FEDEXURL, "FEDEX 2ND DAY AIR - AK/HI", FEDEXQP));    	
-    	carriers.put("50", new Carrier("50", "UPS", UPSURL, "UPS GROUND", UPSQP));    	
-    	carriers.put("51", new Carrier("51", "UPS", UPSURL, "UPS 2ND DAY AIR", UPSQP));    	
-    	carriers.put("52", new Carrier("52", "UPS", UPSURL, "UPS NEXT DAY AIR SAVER", UPSQP));    	
-    	carriers.put("53", new Carrier("53", "UPS", UPSURL, "UPS NEXT DAY AIR", UPSQP));    	
-    	carriers.put("54", new Carrier("54", "UPS", UPSURL, "UPS 3 DAY SELECT", UPSQP));    	
-    	carriers.put("55", new Carrier("55", "UPS", UPSURL, "UPS BASIC", UPSQP));    	
-    	carriers.put("56", new Carrier("56", "UPS", UPSURL, "UPS 2ND DAY AIR - AK/HI", UPSQP));   	
-    	carriers.put("66", new Carrier("66", "Newgistics", NEWGURL, "NGS PARCEL SELECT"));    	
-    	carriers.put("67", new Carrier("67", "Newgistics", NEWGURL, "NGS STANDARD MAIL MACHINABLE"));    	
-    	carriers.put("74", new Carrier("74", "USPS", USPSURL, "AIRMAIL PARCEL POST - USPS", USPSQP));    	
-    	carriers.put("76", new Carrier("76", "USPS", USPSURL, "GLOBAL EXPRESS MAIL - USPS", USPSQP));    	
-    	carriers.put("77", new Carrier("77", "USPS", USPSURL, "USPS INTERNATIONAL", USPSQP));    	
-    	carriers.put("78", new Carrier("78", "USPS", USPSURL, "CANADIAN GLOBAL EXPRESS", USPSQP));    	
-    	carriers.put("82", new Carrier("82", "USPS", USPSURL, "MAIL INNOVATIONS EXPEDITE PSLW", USPSQP));    	
-    	carriers.put("83", new Carrier("83", "USPS", USPSURL, "MAIL INNOVATIONS EXPEDITED PL", USPSQP));    	
-    	carriers.put("92", new Carrier("92", "FedEx", FEDEXURL, "FEDEX GROUND COMMERCIAL", FEDEXQP));    	
-    	carriers.put("95", new Carrier("95", "FedEx", FEDEXURL, "FEDEX SMARTPOST", FEDEXQP));    	
-    	carriers.put("97", new Carrier("97", "", "", "T9 TRUCK"));    	
-    	carriers.put("98", new Carrier("98", "", "", "EXPRESS BILL"));    	
-    	carriers.put("99", new Carrier("99", "", "", "EMPLOYEE PURCHASE"));
+    public static void createCarriers(LinkedHashMap<String, Carrier> carriers) {    	
+    	carriers.put("13", new Carrier("13", "USPS", USPSURL, "FIRST CLASS ENVELOPE", USPSQP)); 
+	//additional codes omitted
     } // end of createCarriers()
     
     //* sends email if appropriate, collects info for database
@@ -268,50 +191,49 @@ public class CopyOfCwBrontoApiConnector {
         MailListOperations listOps = new MailListOperations(client);	
         MailListObject list = listOps.get(new MailListReadRequest().withName("Test Seed"));		
         MessageOperations msgOps = new MessageOperations(client);
-		ObjectOperations<DeliveryObject> deliveryOps = client.transport(DeliveryObject.class);
-		
-		ContactObject contact = null;
-		if (cmdArgs.get("toEmail") != null && cmdArgs.get("toEmail") != "") {
-			tempEmail = cmdArgs.get("toEmail");
-		} else {
-			if (thisMessage.get("email_addr") != null) {
-				tempEmail = thisMessage.get("email_addr");	
+	ObjectOperations<DeliveryObject> deliveryOps = client.transport(DeliveryObject.class);
+
+	ContactObject contact = null;
+	if (cmdArgs.get("toEmail") != null && cmdArgs.get("toEmail") != "") {
+		tempEmail = cmdArgs.get("toEmail");
+	} else {
+		if (thisMessage.get("email_addr") != null) {
+			tempEmail = thisMessage.get("email_addr");	
+		}
+	}
+
+	if (tempEmail != "" && getContactViaEmail(tempEmail, contactOps) != null) {
+		contact = getContactViaEmail(tempEmail, contactOps);
+	} else {
+		isSendable = false;
+	}
+
+	if (isSendable) {
+		MessageObject message = null;		        
+		if (messageNames.containsKey(thisMessage.get("notification_type"))) {
+			if ("SV".equals(thisMessage.get("notification_type"))) {
+				if (messageNames.containsKey(thisMessage.get("idt_sku_color_code_1"))) {
+					message = msgOps.get(new MessageReadRequest().withName(messageNames.get(thisMessage.get("idt_sku_color_code_1"))));
+				} else {
+					log("Improper SVCV color code: " + thisMessage.get("idt_sku_color_code_1"));
+					isSendable = false;
+					sendStatus = "FAIL";
+				}
+			} else {
+				message = msgOps.get(new MessageReadRequest().withName(messageNames.get(thisMessage.get("notification_type"))));
 			}
-		}
-		
-		if (tempEmail != "" && getContactViaEmail(tempEmail, contactOps) != null) {
-			contact = getContactViaEmail(tempEmail, contactOps);
 		} else {
+			log("Improper notification type: " + thisMessage.get("notification_type"));
 			isSendable = false;
-		}
-		
-		if (isSendable) {
-				
-	        MessageObject message = null;		        
-	        if (messageNames.containsKey(thisMessage.get("notification_type"))) {
-	        	if ("SV".equals(thisMessage.get("notification_type"))) {
-	        		if (messageNames.containsKey(thisMessage.get("idt_sku_color_code_1"))) {
-	        			message = msgOps.get(new MessageReadRequest().withName(messageNames.get(thisMessage.get("idt_sku_color_code_1"))));
-	        		} else {
-		        		log("Improper SVCV color code: " + thisMessage.get("idt_sku_color_code_1"));
-			        	isSendable = false;
-			        	sendStatus = "FAIL";
-		        	}
-	        	} else {
-	        		message = msgOps.get(new MessageReadRequest().withName(messageNames.get(thisMessage.get("notification_type"))));
-	        	}
-	        } else {
-	        	log("Improper notification type: " + thisMessage.get("notification_type"));
-	        	isSendable = false;
-	        	sendStatus = "FAIL";
-	        }		        		        
+			sendStatus = "FAIL";
+		}		        		        
 			log("Preparing to send Bronto email: " + message.getName());
-			
+
 			DeliveryRecipientObject recipient = new DeliveryRecipientObject();
 			recipient.setDeliveryType(DeliveryRecipientSelection.SELECTED.getApiValue());
 			recipient.setType(DeliveryRecipientType.CONTACT.getApiValue());
 			if ( ( cmdArgs.get("test") != null && Boolean.parseBoolean(cmdArgs.get("test")) )&&
-												contact.getEmail().indexOf("titlenine.") < 0 ) {
+								contact.getEmail().indexOf("titlenine.") < 0 ) {
 				sendStatus = "SUPPRESS";
 				log("Test email attempting to send outside titlenine to " +  contact.getEmail());
 				log("Not sent");
@@ -324,76 +246,76 @@ public class CopyOfCwBrontoApiConnector {
 				log("Confirmed ID: " + contact.getId());
 
 				ObjectFactory objectFactory = new ObjectFactory();
-				
+
 				GregorianCalendar calendar = new GregorianCalendar();
 				XMLGregorianCalendar xmlCalendar = null;
 				try {
-				     xmlCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
-				    debug("xmlCalendar: " + xmlCalendar.toString());
+					xmlCalendar = DatatypeFactory.newInstance().newXMLGregorianCalendar(calendar);
+					debug("xmlCalendar: " + xmlCalendar.toString());
 				} catch (DatatypeConfigurationException e) {
-				    e.printStackTrace();
+					e.printStackTrace();
 				}
-				
+
 				DeliveryObject delivery = objectFactory.createDeliveryObject();
-					debug("delivery.start: " + delivery.getStart());
-					delivery.setStart(xmlCalendar);
-					delivery.setType(DeliveryType.TRANSACTIONAL.getApiValue());
-					delivery.setMessageId(message.getId());
-					if (cmdArgs.get("fromEmail") != null && cmdArgs.get("fromEmail") != "") {
-						delivery.setFromEmail(cmdArgs.get("fromEmail"));
-					} else {
-						delivery.setFromEmail("thefolks@titlenine.com");
-					}
-					if (cmdArgs.get("fromName") != null && cmdArgs.get("fromName") != "") {
-						delivery.setFromEmail(cmdArgs.get("fromName"));
-					} else {
-						delivery.setFromName("The Folks at Title Nine");
-					}
-			        delivery.getRecipients().add(recipient);			
-				
-		        for(Iterator it = thisMessage.keySet().iterator(); it.hasNext();) {
-		    		String key = (String) it.next();
-		    		if (thisMessage.get(key) != null)
-		    			delivery.getFields().add(createField(key, "html", thisMessage.get(key)));		    		
-		    	}
-		        
-		        int deliveryLine = 0;
-		        debug("---------------------------------------------");
-		        for ( MessageFieldObject field : delivery.getFields() ){        	
-		            debug("(dlvryLine #" + ++deliveryLine + ")\t" + field.getName() + " : " + field.getType() + " : " + field.getContent());
-		        }
-		        debug("---------------------------------------------");
-		        
-		        try {
-		            WriteResult result = deliveryOps.add(delivery);
-		            log("Errors: " + result.getErrors().toString());
-		            for (ResultItem item : result.getResults()) {
-		            	debug("Is Error? " + item.isIsError()); //
-		                if (item.isIsError()) {
-			            	debug("Item: " + item.toString() + 
-			            			" Error: " + item.getErrorCode() + ": " +item.getErrorString());
-			                apiResponse += (" Error: " + item.getErrorCode() + ": " +item.getErrorString());
-			                sendStatus = "FAIL";
-		                } else {
-		                	apiResponse += "OK";
-		                }
-		            }
-		        } catch (Exception e){
-		            e.printStackTrace();
+				debug("delivery.start: " + delivery.getStart());
+				delivery.setStart(xmlCalendar);
+				delivery.setType(DeliveryType.TRANSACTIONAL.getApiValue());
+				delivery.setMessageId(message.getId());
+				if (cmdArgs.get("fromEmail") != null && cmdArgs.get("fromEmail") != "") {
+					delivery.setFromEmail(cmdArgs.get("fromEmail"));
+				} else {
+					delivery.setFromEmail(/*email string omitted*/);
+				}
+				if (cmdArgs.get("fromName") != null && cmdArgs.get("fromName") != "") {
+					delivery.setFromEmail(cmdArgs.get("fromName"));
+				} else {
+					delivery.setFromName(/*name string omitted*/);
+				}
+				delivery.getRecipients().add(recipient);			
+
+			for(Iterator it = thisMessage.keySet().iterator(); it.hasNext();) {
+				String key = (String) it.next();
+				if (thisMessage.get(key) != null)
+					delivery.getFields().add(createField(key, "html", thisMessage.get(key)));		    		
+			}
+
+			int deliveryLine = 0;
+			debug("---------------------------------------------");
+			for ( MessageFieldObject field : delivery.getFields() ){        	
+			    debug("(dlvryLine #" + ++deliveryLine + ")\t" + field.getName() + " : " + field.getType() + " : " + field.getContent());
+			}
+			debug("---------------------------------------------");
+
+			try {
+			    WriteResult result = deliveryOps.add(delivery);
+			    log("Errors: " + result.getErrors().toString());
+			    for (ResultItem item : result.getResults()) {
+				debug("Is Error? " + item.isIsError());
+				if (item.isIsError()) {
+					debug("Item: " + item.toString() + 
+						" Error: " + item.getErrorCode() + ": " +item.getErrorString());
+					apiResponse += (" Error: " + item.getErrorCode() + ": " +item.getErrorString());
+					sendStatus = "FAIL";
+				} else {
+					apiResponse += "OK";
+				}
+			    }
+			} catch (Exception e){
+			    e.printStackTrace();
+			}
+
+			if (sendStatus == "") {
+				sendStatus = "SUCCESS";
+			}
 		        }
 
-		        if (sendStatus == "") {
-		        	sendStatus = "SUCCESS";
-		        }
-			}
-			        	
-	    } else {
-    		log("Email suppressed");
-    		sendStatus = "SUPPRESS";
-    	}
-				
-    	if (Boolean.parseBoolean(cmdArgs.get("test"))) {
-    		sendStatus += "-TEST";
+		    } else {
+			log("Email suppressed");
+			sendStatus = "SUPPRESS";
+		}
+
+		if (Boolean.parseBoolean(cmdArgs.get("test"))) {
+			sendStatus += "-TEST";
     	}
     	
     	logToDatabase(tempEmail,thisMessage.get("order_nbr"),thisMessage.get("sold_to_nbr"),
